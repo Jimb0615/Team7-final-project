@@ -8,6 +8,7 @@ export function NewsReader() {
   const [query, setQuery] = useState(exampleQuery); // latest query send to newsapi
   const [data, setData] = useState(exampleData);   // current data returned from newsapi
   const [queryFormObject, setQueryFormObject] = useState({ ...exampleQuery });
+  const urlNews="/news"
 
   useEffect(() => {
     getNews(query);
@@ -18,12 +19,31 @@ export function NewsReader() {
   }
 
   async function getNews(queryObject) {
-    if (queryObject.q) {
-        setData(exampleData);
-    } else {
-      setData({});
-    }
+  // When queryObject.q is null or empty setData() is called with an empty object
+  if (queryObject.q) {
+    setData({});
+    return;
   }
+
+  try {
+    const response = await fetch(urlNews, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(queryObject)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    setData(data);
+  } catch (error) {
+    // Optionally log or handle errors here
+    setData({ error: error.message });
+  }
+}
 
   return (
     <div>
