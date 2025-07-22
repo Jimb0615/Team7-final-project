@@ -10,6 +10,7 @@ export function NewsReader() {
   const [data, setData] = useState(exampleData);   // current data returned from newsapi
   const [queryFormObject, setQueryFormObject] = useState({ ...exampleQuery });
   const urlNews="/news"
+  const urlQueries = "/queries"
   const [savedQueries, setSavedQueries] = useState([{ ...exampleQuery }]);
 
 
