@@ -19,14 +19,14 @@ export function SavedQueries(params) {
   }
 
   return (
-    <div>
-      <ul>
-        {params.savedQueries && params.savedQueries.length > 0 ? (
-          getQueries()
-        ) : (
-          <li>No Saved Queries Yet!</li>
-        )}
-      </ul>
-    </div>
-  );
+  <div className="saved-queries-scroll">
+    <ul>
+      {params.savedQueries && params.savedQueries.length > 0 ? (
+        getQueries()
+      ) : (
+        <li>No Saved Queries Yet!</li>
+      )}
+    </ul>
+  </div>
+);
 }
