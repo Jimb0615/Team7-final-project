@@ -11,7 +11,10 @@ export function NewsReader() {
   const [queryFormObject, setQueryFormObject] = useState({ ...exampleQuery });
   const urlNews="/news"
   const urlQueries = "/queries"
+  const urlUsersAuth = "/users/authenticate";
   const [savedQueries, setSavedQueries] = useState([{ ...exampleQuery }]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [credentials, setCredentials] = useState({ user: "", password: "" });
 
 
   useEffect(() => {
@@ -67,9 +70,9 @@ export function NewsReader() {
   setQuery(queryObject);
   }
 
-  async function getNews(queryObject) {
-  // When queryObject.q is null or empty setData() is called with an empty object
-  if (queryObject.q) {
+ async function getNews(queryObject) {
+  // If no query, clear data
+  if (!queryObject.q) {
     setData({});
     return;
   }
@@ -86,10 +89,8 @@ export function NewsReader() {
     }
 
     const data = await response.json();
-
     setData(data);
   } catch (error) {
-    // Optionally log or handle errors here
     setData({ error: error.message });
   }
 }
