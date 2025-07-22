@@ -1,29 +1,40 @@
+import './App.css';
+
 export function Articles(params) {
-    let articles = (params.data.articles)?params.data.articles:[];
-    let queryName = (params.query.queryName)?params.query.queryName:"na";
-    let articleCount = (params.data.totalResults)?params.data.totalResults:0;
-    return (
+  let articles = params.data.articles || [];
+  let queryName = params.query.queryName || "na";
+  let articleCount = params.data.totalResults || 0;
+
+  return (
+    <div>
+      <p><strong>Query:</strong> {queryName}</p>
+      <p><strong>Count:</strong> {articleCount}</p>
       <div>
-        Query: {queryName}
-        <br/>Count: {articleCount}
-        <ol >{
-            articles.map((item, idx) => {
-              if(item){
-                if(item.title){
-                  if(item.title === "[Removed]"){
-                    return (<li key={idx} >Was Removed</li>);
-                  }
-                  let trimTitle = item.title.substring(0,30);
-                  return (<li key={idx}>{trimTitle}<a href={item.url} target="_blank" rel="noreferrer" >&nbsp;Link</a></li>);    
-                }else{
-                  return (<li key={idx}>No Title</li>);
-                }
-              }else{
-                return (<li key={1} >No Item</li>);
-              }
-            })
-        }</ol>
+        {
+          articles.map((item, idx) => {
+            if (!item) return <div key={idx}>No Item</div>;
+
+            if (!item.title) return <div key={idx}>No Title</div>;
+
+            if (item.title === "[Removed]") return <div key={idx}>Was Removed</div>;
+
+            let trimTitle = item.title.substring(0, 80);
+
+            return (
+              <div className="article-card" key={idx}>
+                {item.urlToImage && (
+                  <img src={item.urlToImage} alt={item.title} className="thumbnail" />
+                )}
+                <div>
+                  <strong>{trimTitle}</strong>
+                  <br />
+                  <a href={item.url} target="_blank" rel="noreferrer">Read More</a>
+                </div>
+              </div>
+            );
+          })
+        }
       </div>
-    )
-  
-  }
+    </div>
+  );
+}
