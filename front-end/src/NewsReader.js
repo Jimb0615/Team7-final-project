@@ -81,6 +81,9 @@ export function NewsReader() {
       if (window.confirm("Are you sure you want to erase the list?")) {
         saveQueryList([]);          
         setSavedQueries([]);
+        setData({});
+        setQuery({ ...exampleQuery }); 
+        setQueryFormObject({ ...exampleQuery }); 
       }
     }
 
