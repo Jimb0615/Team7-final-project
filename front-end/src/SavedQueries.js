@@ -20,6 +20,14 @@ export function SavedQueries(params) {
 
   return (
   <div className="saved-queries-scroll">
+       {params.currentUser && (
+        <button
+          style={{ marginBottom: "10px" }}
+          onClick={params.resetSavedQueries}
+        >
+          Reset Saved Queries
+        </button>
+      )}
     <ul>
       {params.savedQueries && params.savedQueries.length > 0 ? (
         getQueries()

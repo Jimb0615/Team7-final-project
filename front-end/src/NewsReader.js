@@ -77,6 +77,13 @@ export function NewsReader() {
     }
     }
 
+    function resetSavedQueries() {
+      if (window.confirm("Are you sure you want to erase the list?")) {
+        saveQueryList([]);          
+        setSavedQueries([]);
+      }
+    }
+
   function onSavedQuerySelect(selectedQuery) {
     setQueryFormObject(selectedQuery);
     setQuery(selectedQuery);
@@ -168,6 +175,8 @@ return (
         savedQueries={savedQueries}
         selectedQueryName={query.queryName}
         onQuerySelect={onSavedQuerySelect}
+        currentUser={currentUser}
+        resetSavedQueries={resetSavedQueries}
       />
     </div>
   </div>
