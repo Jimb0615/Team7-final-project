@@ -25,10 +25,10 @@ export function Articles(params) {
       <p><strong>Query:</strong> {queryName}</p>
       <p><strong>Count:</strong> {articleCount}</p>
 
-      <button
-  onClick={() => setShowDetails(!showDetails)}
-  className="query-details-button"
->
+          <button
+      onClick={() => setShowDetails(!showDetails)}
+      className="action-button"
+    >
   Query Details
       </button>
 

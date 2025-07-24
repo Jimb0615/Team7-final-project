@@ -46,7 +46,7 @@ export function LoginForm(params) {
         </div>
 
         <div style={{ textAlign: "center" }}>
-          <button onClick={params.login} className="login-button">
+          <button onClick={params.login} className="action-button">
             Login
           </button>
         </div>
@@ -54,7 +54,7 @@ export function LoginForm(params) {
 
         {params.currentUser && (
         <div style={{ textAlign: "center", marginTop: "10px" }}>
-          <button onClick={handleLogout} className="logout-button">
+          <button onClick={handleLogout} className="action-button">
             Logout
           </button>
         </div>

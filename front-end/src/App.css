@@ -218,22 +218,6 @@ ul li.selected {
   padding-right: 6px;
 }
 
-.login-button {
-  background-color: #8b5252;
-  color: white;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: background-color 0.2s ease;
-  margin-bottom: 12px;
-}
-
-.login-button:hover {
-  background-color: #1e40af;
-}
 .articles-scroll {
   max-height: 400px;
   overflow-y: auto;
@@ -284,8 +268,7 @@ ul li.selected {
 .query-detail-item {
   white-space: nowrap;
 }
-
-.query-details-button {
+.action-button {
   background-color: #8b5252;
   color: white;
   padding: 10px 14px;
@@ -294,10 +277,10 @@ ul li.selected {
   cursor: pointer;
   font-weight: 500;
   font-size: 1rem;
-  margin-bottom: 10px;
   transition: background-color 0.2s ease;
+  margin-bottom: 10px;
 }
 
-.query-details-button:hover {
+.action-button:hover {
   background-color: #1e40af;
 }

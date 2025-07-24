@@ -21,8 +21,8 @@ export function SavedQueries(params) {
   return (
   <div className="saved-queries-scroll">
        {params.currentUser && (
-        <button
-          style={{ marginBottom: "10px" }}
+              <button
+          className="action-button"
           onClick={params.resetSavedQueries}
         >
           Reset Saved Queries
