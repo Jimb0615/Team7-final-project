@@ -1,17 +1,10 @@
-
 import { QueryForm } from './QueryForm';
 import { Articles } from './Articles';
 import { useState, useEffect } from 'react';
 import { exampleQuery, exampleData } from './data';
 import { SavedQueries } from './SavedQueries';
 import { LoginForm } from './LoginForm';
-
-// Default queries for when no user is logged in
-const defaultQueries = [
-  { id: 1, queryName: 'Default Query 1', q: 'News', language: 'en', pageSize: 10 },
-  { id: 2, queryName: 'Default Query 2', q: 'Google', language: 'en', pageSize: 5 },
-  { id: 3, queryName: 'Default Query 3', q: 'Nasa', language: 'en', pageSize: 20 }
-];
+import defaultQueries from './defaultqueries.json';
 
 export function NewsReader() {
   const [query, setQuery] = useState(exampleQuery);
@@ -32,6 +25,8 @@ export function NewsReader() {
     if (!currentUser) {
       // No user logged in, use default queries
       setSavedQueries(defaultQueries);
+      setQuery(defaultQueries[0]);
+      setQueryFormObject(defaultQueries[0]);
     } else {
       // Fetch customizable queries from backend
       getQueryList();
@@ -95,6 +90,16 @@ export function NewsReader() {
     }
   }
 
+  function resetSavedQueries() {
+    if (window.confirm("Are you sure you want to erase the list?")) {
+      saveQueryList([]);
+      setSavedQueries([]);
+      setData({});
+      setQuery({ ...exampleQuery });
+      setQueryFormObject({ ...exampleQuery });
+    }
+  }
+
   function onSavedQuerySelect(selectedQuery) {
     setQueryFormObject(selectedQuery);
     setQuery(selectedQuery);
@@ -111,6 +116,7 @@ export function NewsReader() {
     return false;
   }
 
+  
   function onFormSubmit(queryObject) {
     if (currentUser === null) {
       alert("Log in if you want to create new queries!");
@@ -158,7 +164,6 @@ export function NewsReader() {
       setData({ error: error.message });
     }
   }
-
   return (
     <div className="news-container">
       <div className="login-box">
@@ -188,12 +193,14 @@ export function NewsReader() {
             savedQueries={savedQueries}
             selectedQueryName={query.queryName}
             onQuerySelect={onSavedQuerySelect}
+            currentUser={currentUser}
+            resetSavedQueries={resetSavedQueries}
           />
         </div>
       </div>
 
       <div className="box article-box">
-        <span className="title">Articles List</span>
+        <span className='title'>Articles List</span>
         <Articles query={query} data={data} />
       </div>
     </div>

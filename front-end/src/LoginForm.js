@@ -5,6 +5,12 @@ export function LoginForm(params) {
     params.setCredentials(newCredentials);
   };
 
+  function handleLogout() {
+    if (window.confirm("Are you sure you want to logout?")) {
+      params.login();
+    }
+  }
+
   return (
     <div className="box">
       <span className="title">Login</span>
@@ -45,6 +51,15 @@ export function LoginForm(params) {
           </button>
         </div>
       </div>
+
+        {params.currentUser && (
+        <div style={{ textAlign: "center", marginTop: "10px" }}>
+          <button onClick={handleLogout} className="logout-button">
+            Logout
+          </button>
+        </div>
+      )}
+
     </div>
   );
 }
