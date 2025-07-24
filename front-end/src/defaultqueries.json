@@ -1,0 +1,21 @@
+[
+  {
+    "queryName": "query01",
+    "language": "en",
+    "pageSize": "20",
+    "q": "News"
+  },
+  {
+    "queryName": "query02",
+    "language": "en",
+    "pageSize": 10,
+    "q": "spacex"
+  },
+  {
+    "queryName": "query03",
+    "language": "en",
+    "pageSize": 10,
+    "q": "cnn"
+  }
+  
+]
